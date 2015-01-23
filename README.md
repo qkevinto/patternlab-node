@@ -1,4 +1,4 @@
-[![Build Status](https://travis-ci.org/pattern-lab/patternlab-node.png?branch=master)](https://travis-ci.org/pattern-lab/patternlab-node) 
+[![Build Status](https://travis-ci.org/pattern-lab/patternlab-node.png?branch=master)](https://travis-ci.org/pattern-lab/patternlab-node)
 
 ## About the Node Version of Pattern Lab
 
@@ -6,11 +6,12 @@ The Node version of Pattern Lab is, at its core, a static site generator. It com
 
 ### Getting Started
 
-To run patternlab-node, just do the following from the command line at the root of patternlab-node: 
+To run patternlab-node, just do the following from the command line at the root of patternlab-node:
 
 1. `npm install`
-2. `npm install -g grunt-cli`
-3. `grunt`  
+2. `npm install -g gulp`
+3. `gulp`
+4. Go to [http://localhost:9001](http://localhost:9001)
 
 This creates all patterns, the styleguide, and the pattern lab site.
 
@@ -18,16 +19,25 @@ This creates all patterns, the styleguide, and the pattern lab site.
 
 The following are grunt task arguments you may execute:
 
-##### `patternlab`
-With no arguments, patternlab runs the full builder, compiling patterns, and constructing the front-end site.
+##### `gulp lab`
+Patternlab runs the full builder, compiling patterns, and constructing the front-end site. This is the default task.
 
-##### `patternlab:only_patterns`
+##### `gulp patterns`
 Compile the patterns only, outputting to ./public/patterns
 
-##### `patternlab:v`
+##### `gulp prelab`
+Runs pre-pattern-lab tasks 'clean', 'banner', and 'copy'
+
+##### `gulp copy`
+Copies static assets to './public'
+
+##### `gulp` travis
+Run the nodeunit test suite
+
+##### `gulp version`
 Retrieve the version of patternlab-node you have installed
 
-##### `patternlab:help`
+##### `gulp help`
 Get more information about patternlab-node, pattern lab in general, and where to report issues.
 
 ### Config Options
@@ -74,7 +84,7 @@ Pattern states should be lowercase and use hyphens where spaces are present.
 ```
 
 ##### Pattern Export
-`config.json` also has two properties that work together to export completed patterns for use in a production environment. Provide an array of keys and an output directory. Pattern Lab doesn't ship with any pattern export keys, but the default directory is `"./pattern_exports/"` created inside the install directory. 
+`config.json` also has two properties that work together to export completed patterns for use in a production environment. Provide an array of keys and an output directory. Pattern Lab doesn't ship with any pattern export keys, but the default directory is `"./pattern_exports/"` created inside the install directory.
 
 ```
 "patternExportKeys": ["molecules-primary-nav", "organisms-header", "organisms-header"],
@@ -96,7 +106,7 @@ The Node version of Pattern Lab is maintained by [@bmuenzenmeyer](https://twitte
 
 ### Forward, To the Specification!
 
-Dave Olsen has published the [specification](https://github.com/pattern-lab/the-spec/blob/draft/SPEC.md) for Pattern Lab ports. Development will be oriented toward compliance with this as the spec and the port mature together. 
+Dave Olsen has published the [specification](https://github.com/pattern-lab/the-spec/blob/draft/SPEC.md) for Pattern Lab ports. Development will be oriented toward compliance with this as the spec and the port mature together.
 
 ### Is Pattern Lab a Platform or a Build Tool?
 
@@ -150,7 +160,7 @@ By default, the Pattern Lab assets can be manually generated and the Pattern Lab
 * [Watching for Changes and Auto-Regenerating Patterns](http://patternlab.io/docs/advanced-auto-regenerate.html) - Node version coming soon
 * [Auto-Reloading the Browser Window When Changes Are Made](http://patternlab.io/docs/advanced-reload-browser.html) - Node version coming soon
 * [Multi-browser & Multi-device Testing with Page Follow](http://patternlab.io/docs/advanced-page-follow.html)
-* [Keyboard Shortcuts](http://patternlab.io/docs/advanced-keyboard-shortcuts.html) 
+* [Keyboard Shortcuts](http://patternlab.io/docs/advanced-keyboard-shortcuts.html)
 * [Special Pattern Lab-specific Query String Variables ](http://patternlab.io/docs/pattern-linking.html)
 * [Preventing the Cleaning of public/](http://patternlab.io/docs/advanced-clean-public.html) - Node version coming soon
 * [Modifying the Pattern Lab Nav](http://patternlab.io/docs/advanced-pattern-lab-nav.html) - Node version coming soon
