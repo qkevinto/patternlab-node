@@ -17,7 +17,7 @@ This creates all patterns, the styleguide, and the pattern lab site.
 
 ### Command Line Interface
 
-The following are grunt task arguments you may execute:
+The following are gulp task arguments you may execute:
 
 ##### `gulp lab`
 Patternlab runs the full builder, compiling patterns, and constructing the front-end site. This is the default task.
@@ -43,7 +43,7 @@ Get more information about patternlab-node, pattern lab in general, and where to
 ### Config Options
 
 ##### Watching Changes
-To have patternlab-node watch for changes to either a mustache template, data, or stylesheets, run `grunt watch`. The `Gruntfile` governs what is watched. It should be easy to add scss or whatever preprocessor you fancy.
+To have patternlab-node watch for changes to either a mustache template, data, or stylesheets, run `gulp watch`. The `gulpfile` governs what is watched. It should be easy to add scss or whatever preprocessor you fancy.
 
 ##### Nav Bar Controls
 If you don't have a need for some of the nav-bar tools in the patternlab frontend, you can turn them off in `config.json`.
@@ -98,7 +98,7 @@ Coupled with exported css (much easier to extract with existing tools like [grun
 `patternlab.json` is a file created for debugging purposes. Set `debug` to true in `.config.json` to see all the secrets.
 
 ##### Server
-Running `grunt serve` will compile the patternlab front end and host it on <a href="http://localhost:9001">http://localhost:9001</a> by default. Page will reload on any saved source code change.
+Running `gulp serve` will compile the patternlab front end and host it on <a href="http://localhost:9001">http://localhost:9001</a> by default. Page will reload on any saved source code change.
 
 ===
 
@@ -112,10 +112,10 @@ Dave Olsen has published the [specification](https://github.com/pattern-lab/the-
 
 A lot of good conversation has revolved around whether Pattern Lab is a platform or a tool in the toolbox, part of a larger solution. It's my goal to #1) adhere to the specification and #2) meet the needs of both use cases.
 
-If you want to only build the patterns, alter your `Gruntfile.js` patternlab task to the following:
+If you want to only build the patterns, alter your `gulpfile.js` patternlab task to the following:
 
 ```
-grunt.registerTask('default', ['clean', 'concat', 'patternlab:only_patterns', /*'sass',*/ 'copy']);
+gulp.task('default', ['clean', 'patternlab:only_patterns']);
 ```
 
 This will output compiled patterns to ./public/patterns/
