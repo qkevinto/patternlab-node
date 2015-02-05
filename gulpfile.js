@@ -11,6 +11,7 @@ var pkg = require('./package.json'),
 		watch = require('gulp-watch');
 
 require('gulp-load')(gulp);
+
 var banner = [ '/** ',
   ' * <%= pkg.name %> - v<%= pkg.version %> - <%= today %>',
   ' * ', ' * ',
@@ -22,11 +23,13 @@ var banner = [ '/** ',
 
 //load patternlab-node tasjs
 gulp.loadTasks(__dirname+'/builder/gulp-patternlab.js');
+
 //clean patterns dir
 gulp.task('clean', function(){
   return gulp.src('./public/patterns/*', {read:false})
     .pipe(rimraf())
-})
+});
+
 //(re)place a banner
 gulp.task('banner', function(){
   return gulp.src(['./builder/patternlab.js', './builder/object_factory.js'])
@@ -36,22 +39,26 @@ gulp.task('banner', function(){
       today : new Date().getFullYear() }
     ))
     .pipe(gulp.dest('./builder'));
-})
+});
+
 //copy tasks
 gulp.task('cp:js', function(){
   return gulp.src('**/*.js', {cwd:'./source/js'})
     .pipe(gulp.dest('./public/js'))
 });
+
 gulp.task('cp:img', function(){
   return gulp.src(
     [ '**/*.gif', '**/*.png', '**/*.jpg', '**/*.jpeg'  ],
     {cwd:'./source/images'} )
     .pipe(gulp.dest('./public/images'))
 });
+
 gulp.task('cp:font', function(){
   return gulp.src('*', {cwd:'./source/fonts'})
     .pipe(gulp.dest('./public/fonts'))
 });
+
 //server
 gulp.task('connect', function(){
   return connect.server({
@@ -60,19 +67,22 @@ gulp.task('connect', function(){
     port: 9001,
     livereload: false,
   })
-})
+});
+
 //unit test
 gulp.task('nodeunit', function(){
   return gulp.src('./test/**/*_tests.js')
     .pipe(nodeunit());
-})
+});
+
 //lint patterlab builder files
 gulp.task('jshint', function(){
 	//see package.json for js hint options
 	return gulp.src('./builder/**/*.js')
 		.pipe(hint())
 		.pipe(hint.reporter('default'));
-})
+});
+
 //sass
 gulp.task('sass', function(){
 	return gulp.src('./source/css/*.scss')
@@ -81,18 +91,21 @@ gulp.task('sass', function(){
 			precision: 8
 		}))
 		.pipe(gulp.dest('./public/css'));
-})
+});
+
 //watch tasks
 gulp.task('w:sass', function(){
 	return watch('./source/css/**/*.scss', function(files){
 		return gulp.start('sass');
 	})
 });
+
 gulp.task('w:sass', function(){
 	return watch('./source/css/**/*.scss', function(files){
 		return gulp.start('sass');
 	})
-})
+});
+
 gulp.task('w:patterns', function(){
 	return watch([
 		'./source/_patterns/**/*.mustache',
@@ -102,8 +115,6 @@ gulp.task('w:patterns', function(){
 			return gulp.start('patterns');
 		})
 });
-
-
 
 gulp.task('default', ['lab', 'watch']);
 
